@@ -4,13 +4,15 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 require('./db.js');
 
 const server = express();
 
 server.name = 'API';
-
+server.use(morgan('dev'));
 server.use(cors())
+server.use(cookieParser());
 
 server.use('/', routes);
 
