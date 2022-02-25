@@ -3,7 +3,6 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-
   DATABASE_URL
 }= process.env;
 
