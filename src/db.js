@@ -2,16 +2,19 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-//nst {
-  //_USER, DB_PASSWORD, DB_HOST,DB_NAME,
-  //TABASE_URL, DB_DB
-//= process.env;
+const {
+  DATABASE_URL
+}= process.env;
 
-const sequelize = new Sequelize('postgres://tmbhvdmobxbjbn:ebb263d96b8b77acba5bbf8e22f53b3fb939afc935b08a2f9a017156063694bd@ec2-18-215-8-186.compute-1.amazonaws.com:5432/d603onm76ufjv3
-'{
+const sequelize = new Sequelize(DATABASE_URL{
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  port:5432,
+  dialectOptions:{
+   ssl: {
+                                require:true,
+                                rejectUnauthorized:false
+  }                             
+   }
 });
 const basename = path.basename(__filename);
 
